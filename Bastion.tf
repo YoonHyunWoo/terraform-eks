@@ -1,17 +1,29 @@
-resource "aws_instance" "Bastion" {
+resource "aws_instance" "bastion" {
   ami           = "ami-0c76973fbe0ee100c"
   instance_type = "t3.small"
   tags = {
-    Name : "Bastion"
+    Name : "bastion"
   }
-  vpc_security_group_ids = ["${aws_security_group.Bastion.id}"]
+  vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
   subnet_id              = aws_subnet.public-a.id
   depends_on             = [module.eks]
+  iam_instance_profile   = aws_iam_instance_profile.bastion.name
+
+  user_data = <<EOF
+#!/bin/bash
+
+EOF
 }
 
-resource "aws_security_group" "Bastion" {
-  name        = "Bastion-sg"
-  description = "Bastion-sg"
+resource "aws_iam_instance_profile" "bastion" {
+  name = "bastion-instance-profile"
+  role = aws_iam_role.bastion.name
+}
+
+
+resource "aws_security_group" "bastion" {
+  name        = "bastion-sg"
+  description = "bastion-sg"
   vpc_id      = aws_vpc.practice-vpc.id
 
   ingress {
@@ -28,10 +40,8 @@ resource "aws_security_group" "Bastion" {
   }
 }
 
-
-
 resource "aws_iam_role" "bastion" {
-  name = "TF-Bastion-Role"
+  name = "TF-bastion-Role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -46,12 +56,12 @@ resource "aws_iam_role" "bastion" {
     ]
   })
 
-  managed_policy_arns = [aws_iam_policy.TF-Bastion-Policy.arn]
+  managed_policy_arns = [aws_iam_policy.tf-bastion-policy.arn]
 
 }
 
-resource "aws_iam_policy" "TF-Bastion-Policy" {
-  name = "Bastion-Policy"
+resource "aws_iam_policy" "tf-bastion-policy" {
+  name = "bastion-policy"
 
   policy = jsonencode({
     Version = "2012-10-17"

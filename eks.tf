@@ -27,8 +27,8 @@ module "eks" {
 
   aws_auth_roles = [
     {
-      rolearn  = aws_iam_policy.TF-Bastion-Policy.arn
-      username = "TF-Bastion-Role"
+      rolearn  = aws_iam_policy.tf-bastion-policy.arn
+      username = "tf-bastion-role"
       groups   = ["system:masters"]
     },
   ]
