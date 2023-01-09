@@ -1,7 +1,7 @@
 variable "ACCESSKEY" {
-  type    = string
+  type = string
 }
 
 variable "SECRETKEY" {
-  type    = string
+  type = string
 }

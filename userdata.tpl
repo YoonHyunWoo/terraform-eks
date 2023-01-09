@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# set time zone Asia/Seoul
+
+rm /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
 # enable password login to bastion
 
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config

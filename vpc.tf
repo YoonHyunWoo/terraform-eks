@@ -58,13 +58,13 @@ resource "aws_route" "internet-gw-route" {
 
 resource "aws_eip" "practice-nat-eip" {
   vpc        = true
-  depends_on = ["aws_internet_gateway.practice-igw"]
+  depends_on = [aws_internet_gateway.practice-igw]
 }
 
 resource "aws_nat_gateway" "prac-nat" {
   allocation_id = aws_eip.practice-nat-eip.id
   subnet_id     = aws_subnet.public-a.id
-  depends_on    = ["aws_internet_gateway.practice-igw"]
+  depends_on    = [aws_internet_gateway.practice-igw]
 }
 
 resource "aws_route_table" "practice-private-route-table" {
