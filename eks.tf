@@ -23,16 +23,5 @@ module "eks" {
     Terraform   = "true"
   }
   cluster_endpoint_private_access = true
-  manage_aws_auth_configmap       = true
-  create_aws_auth_configmap       = true
-
-
-  aws_auth_roles = [
-    {
-      rolearn  = aws_iam_policy.tf-bastion-policy.arn
-      username = "tf-bastion-role"
-      groups   = ["system:masters"]
-    },
-  ]
 
 }

@@ -8,7 +8,10 @@ resource "aws_instance" "bastion" {
   subnet_id              = aws_subnet.public-a.id
   depends_on             = [module.eks]
   iam_instance_profile   = aws_iam_instance_profile.bastion.name
-  user_data              = templatefile("userdata.tpl", {})
+  user_data = templatefile("userdata.tpl", {
+    ACCESSKEY = var.ACCESSKEY
+    SECRETKEY = var.SECRETKEY
+  })
 
 }
 

@@ -31,5 +31,5 @@ systemctl restart docker
 systemctl enable docker
 
 # update kubeconfig
-
+echo -e "${ACCESSKEY}\n${SECRETKEY}\nap-northeast-2\n\n"  | aws configure 
 aws eks update-kubeconfig --name practice-cluster --region ap-northeast-2
