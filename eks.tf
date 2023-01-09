@@ -24,6 +24,8 @@ module "eks" {
   }
   cluster_endpoint_private_access = true
   manage_aws_auth_configmap       = true
+  create_aws_auth_configmap       = true
+
 
   aws_auth_roles = [
     {
