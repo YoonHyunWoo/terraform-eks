@@ -32,4 +32,7 @@ resource "aws_security_group_rule" "eks_cluster_add_access" {
   to_port     = 0
   protocol    = "-1"
   cidr_blocks = ["10.0.0.0/16"]
+  depends_on = [
+    module.eks
+  ]
 }
