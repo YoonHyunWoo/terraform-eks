@@ -8,8 +8,8 @@ ln -s /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 # enable password login to bastion
 
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-systemctl restart sshd 
-ehco 'password' | passwd --stdin ec2-user
+systemctl restart sshd
+echo 'password' | passwd --stdin ec2-user
 
 # install kubectl
 
@@ -33,3 +33,7 @@ systemctl enable docker
 # update kubeconfig
 echo -e "${ACCESSKEY}\n${SECRETKEY}\nap-northeast-2\n\n"  | aws configure 
 aws eks update-kubeconfig --name practice-cluster --region ap-northeast-2
+cp -r /root/.kube /home/ec2-user
+cp -r /root/.aws /home/ec2-user
+chown ec2-user:ec2-user -R /home/ec2-user/.aws
+chown ec2-user:ec2-user -R /home/ec2-user/.kube
