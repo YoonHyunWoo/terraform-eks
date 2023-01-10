@@ -5,6 +5,7 @@ Kubernetes on EKS를 연습하기 위한 템플릿입니다.  https://github.com
 # VPC
 
 | name  | practice-vpc |
+| --- | --- |
 | cidr  | 10.0.0.0/16 |
 | public subnet | [10.0.0.0/24, 10.0.1.0/24] |
 | private subnet | [10.0.2.0/24, 10.0.3.0/24] |
