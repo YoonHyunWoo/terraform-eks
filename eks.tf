@@ -23,5 +23,9 @@ module "eks" {
     Terraform   = "true"
   }
   cluster_endpoint_private_access = true
+  cluster_create_security_group   = false
+  cluster_security_group_id       = aws_security_group.bastion.id
+  worker_create_security_group    = false
+  worker_security_group_id        = aws_security_group.bastion.id
 
 }
