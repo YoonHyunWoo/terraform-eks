@@ -34,7 +34,7 @@ resource "aws_security_group_rule" "eks_cluster_add_access" {
   cidr_blocks       = ["10.0.0.0/16"]
 }
 
-resource "aws_security_group_rule" "eks_cluster_add_access" {
+resource "aws_security_group_rule" "eks_node_add_access" {
   security_group_id = module.eks.node_security_group_id
   type              = "ingress"
   from_port         = 0
