@@ -23,9 +23,12 @@ module "eks" {
     Terraform   = "true"
   }
   cluster_endpoint_private_access = true
-  cluster_create_security_group   = false
-  cluster_security_group_id       = aws_security_group.bastion.id
-  worker_create_security_group    = false
-  worker_security_group_id        = aws_security_group.bastion.id
+}
 
+resource "aws_security_group_rule" "eks_cluster_add_access" {
+  type = "ingress"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["10.0.0.0/16"] 
 }
