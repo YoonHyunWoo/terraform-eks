@@ -26,7 +26,7 @@ EKS Control Plane입니다.
 
 # EKS
 
-Bastion.tf에서 생성하는 bastion의 role을 aws-auth ConfigMap에 binding해줍니다. 스펙은 다음과 같습니다.
+Security group에 10.0.0.0/16 ip를 source로 필요한 security group rule을 add해줍니다. 스펙은 다음과 같습니다.
 
 | cluster name | practice-cluster |
 | --- | --- |
