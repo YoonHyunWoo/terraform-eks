@@ -44,11 +44,11 @@ resource "aws_security_group_rule" "eks_node_add_access" {
 }
 
 
-resource "aws_security_group_rule" "eks_node_add_outbound" {
-  security_group_id = module.eks.node_security_group_id
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-}
+# resource "aws_security_group_rule" "eks_node_add_outbound" {
+#   security_group_id = module.eks.node_security_group_id
+#   type              = "egress"
+#   from_port         = 0
+#   to_port           = 0
+#   protocol          = "-1"
+#   cidr_blocks       = ["0.0.0.0/0"]
+# }
